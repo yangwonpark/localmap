@@ -13,7 +13,11 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	 <!-- MySQL dataSource -->
+	
+    <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
+    <context:property-placeholder location="classpath:config/*.properties" />
+		
+	<!-- MySQL dataSource -->
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${spring.datasource.driverClassName}" />
@@ -37,6 +41,9 @@
 		  destroy-method="clearCache">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
+	
+	<context:component-scan base-package="com.park.service" />
+	<mybatis-spring:scan base-package="com.park.*"/>
 	
 	
 </beans>
