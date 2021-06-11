@@ -13,7 +13,6 @@ import com.park.service.MemberService;
 @Controller
 public class LoginController {
 	
-	
 	@Autowired
 	private MemberService ms;
 	
@@ -34,5 +33,13 @@ public class LoginController {
 		se.setAttribute("login", login);
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpSession se) {
+		
+		se.invalidate();
+		
+		return "redirect:/";	
 	}
 }
